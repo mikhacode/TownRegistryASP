@@ -1,0 +1,9 @@
+﻿@model TownRegistryASP.ViewModels.EditCitizenViewModel
+@{
+    ViewBag.Title = "ViewCitizen";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Citizen.FirstName</h2>
+<p>@Model.Citizen.FirstName was born in @Model.PlaceOfBirth.City and passed away in @Model.PlaceOfDeath.City</p>
+
