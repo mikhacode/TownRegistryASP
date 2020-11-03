@@ -5,11 +5,23 @@ using System.Web;
 using System.Web.Mvc;
 using TownRegistryASP.Models;
 using TownRegistryASP.ViewModels;
+using System.Data.Entity;
 
 namespace TownRegistryASP.Controllers
 {
     public class CitizensController : Controller
     {
+        private MyDbContext _context;
+
+        public CitizensController()
+        {
+            _context = new MyDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
         // GET: Citizen
         public ActionResult ViewCitizen()
         {
@@ -17,8 +29,8 @@ namespace TownRegistryASP.Controllers
             {
                 FirstName = "Joe"
             };
-            var placeOfBirth = new PlaceOfBirth { City = "New York" };
-            var placeOfDeath = new PlaceOfDeath { City = "Denver" };
+            var placeOfBirth = new Place { City = "New York" };
+            var placeOfDeath = new Place { City = "Denver" };
 
             var viewModel = new EditCitizenViewModel()
             {
@@ -51,7 +63,15 @@ namespace TownRegistryASP.Controllers
                 sortBy = "Name";
             }
 
-            return Content(String.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
+            var citizens = _context.Citizens.ToList();
+
+            var viewModel = new CitizenIndexViewModel()
+            {
+                Citizens = citizens
+            };
+
+            // return Content(String.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
+            return View(viewModel);
         }
     }
 }

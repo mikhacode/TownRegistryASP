@@ -77,3 +77,13 @@ C:\Users\feniq\Documents\TownRegistry\TownRegistryASP\TownRegistryASP\obj\Debug\
 C:\Users\feniq\Documents\TownRegistry\TownRegistryASP\TownRegistryASP\obj\Debug\TownRegistryASP.csproj.CopyComplete
 C:\Users\feniq\Documents\TownRegistry\TownRegistryASP\TownRegistryASP\obj\Debug\TownRegistryASP.dll
 C:\Users\feniq\Documents\TownRegistry\TownRegistryASP\TownRegistryASP\obj\Debug\TownRegistryASP.pdb
+C:\Users\feniq\Documents\TownRegistry\TownRegistryASP\TownRegistryASP\bin\EntityFramework.dll
+C:\Users\feniq\Documents\TownRegistry\TownRegistryASP\TownRegistryASP\bin\EntityFramework.SqlServer.dll
+C:\Users\feniq\Documents\TownRegistry\TownRegistryASP\TownRegistryASP\bin\EntityFramework.xml
+C:\Users\feniq\Documents\TownRegistry\TownRegistryASP\TownRegistryASP\bin\EntityFramework.SqlServer.xml
+C:\Users\feniq\Documents\TownRegistry\TownRegistryASP\TownRegistryASP\obj\Debug\TownRegistryASP.Migrations.InitialModel.resources
+C:\Users\feniq\Documents\TownRegistry\TownRegistryASP\TownRegistryASP\obj\Debug\TownRegistryASP.csproj.GenerateResource.cache
+C:\Users\feniq\Documents\TownRegistry\TownRegistryASP\TownRegistryASP\obj\Debug\TownRegistryASP.Migrations.InitialModel1.resources
+C:\Users\feniq\Documents\TownRegistry\TownRegistryASP\TownRegistryASP\obj\Debug\TownRegistryASP.Migrations.ApplyAnnotationsToCitizen.resources
+C:\Users\feniq\Documents\TownRegistry\TownRegistryASP\TownRegistryASP\obj\Debug\TownRegistryASP.Migrations.ApplyNullableIDToCitizen.resources
+C:\Users\feniq\Documents\TownRegistry\TownRegistryASP\TownRegistryASP\obj\Debug\TownRegistryASP.Migrations.ApplyNullableDatesToCitizen.resources
