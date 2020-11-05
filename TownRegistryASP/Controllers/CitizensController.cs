@@ -35,7 +35,7 @@ namespace TownRegistryASP.Controllers
                 PlaceOfBirth = new Place(),
                 PlaceOfDeath = new Place()
             };
-            return View("CustomerForm", viewModel);
+            return View("CitizenForm", viewModel);
         }
 
         [HttpPost]
@@ -76,14 +76,41 @@ namespace TownRegistryASP.Controllers
             {
                 var existingCitizen = _context.Citizens.Single(c => c.CitizenID == viewModel.Citizen.CitizenID);
 
-                if (existingCitizen.PlaceOfBirthID != null)
+                if (existingCitizen.PlaceOfBirthID != 0)
                 {
                     var existingPlaceOfBirth = _context.Places.Single(p => p.PlaceID == existingCitizen.PlaceOfBirthID);
+                    existingPlaceOfBirth.Street1 = viewModel.PlaceOfBirth.Street1;
+                    existingPlaceOfBirth.Street2 = viewModel.PlaceOfBirth.Street2;
+                    existingPlaceOfBirth.City = viewModel.PlaceOfBirth.City;
+                    existingPlaceOfBirth.State = viewModel.PlaceOfBirth.State;
+                    existingPlaceOfBirth.Zipcode = viewModel.PlaceOfBirth.Zipcode;
+
+                    _context.SaveChanges();
                 }
-                if (existingCitizen.PlaceOfDeathID != null)
+                if (existingCitizen.PlaceOfDeathID != 0)
                 {
                     var existingPlaceOfDeath = _context.Places.Single(p => p.PlaceID == existingCitizen.PlaceOfDeathID);
+                    existingPlaceOfDeath.Street1 = viewModel.PlaceOfDeath.Street1;
+                    existingPlaceOfDeath.Street2 = viewModel.PlaceOfDeath.Street2;
+                    existingPlaceOfDeath.City = viewModel.PlaceOfDeath.City;
+                    existingPlaceOfDeath.State = viewModel.PlaceOfDeath.State;
+                    existingPlaceOfDeath.Zipcode = viewModel.PlaceOfDeath.Zipcode;
+
+                    _context.SaveChanges();
                 }
+
+                existingCitizen.FirstName = viewModel.Citizen.FirstName;
+                existingCitizen.MiddleName = viewModel.Citizen.MiddleName;
+                existingCitizen.LastName = viewModel.Citizen.LastName;
+                existingCitizen.Gender = viewModel.Citizen.Gender;
+                existingCitizen.DateOfBirth = viewModel.Citizen.DateOfBirth;
+                existingCitizen.PlaceOfBirthID = viewModel.PlaceOfBirth.PlaceID;
+                existingCitizen.DateOfDeath = viewModel.Citizen.DateOfDeath;
+                existingCitizen.PlaceOfDeathID = viewModel.PlaceOfDeath.PlaceID;
+                existingCitizen.Status = viewModel.Citizen.Status;
+                existingCitizen.Occupation = viewModel.Citizen.Occupation;
+
+                _context.SaveChanges();
 
                 return RedirectToAction("Index", "Citizens");
             }
