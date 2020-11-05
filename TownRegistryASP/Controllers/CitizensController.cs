@@ -43,13 +43,13 @@ namespace TownRegistryASP.Controllers
         {
             if (viewModel.Citizen.CitizenID == 0)
             {
-                if (viewModel.PlaceOfBirth.City != null)
+                if (viewModel.PlaceOfBirth.City != "")
                 {
                     _context.Places.Add(viewModel.PlaceOfBirth);
                     _context.SaveChanges();
                     viewModel.Citizen.PlaceOfBirthID = viewModel.PlaceOfBirth.PlaceID;
                 }
-                if (viewModel.PlaceOfDeath.City != null)
+                if (viewModel.PlaceOfDeath.City != "")
                 {
                     _context.Places.Add(viewModel.PlaceOfDeath);
                     _context.SaveChanges();
@@ -79,6 +79,7 @@ namespace TownRegistryASP.Controllers
                 if (existingCitizen.PlaceOfBirthID != 0)
                 {
                     var existingPlaceOfBirth = _context.Places.Single(p => p.PlaceID == existingCitizen.PlaceOfBirthID);
+                    viewModel.PlaceOfBirth.PlaceID = existingPlaceOfBirth.PlaceID;
                     existingPlaceOfBirth.Street1 = viewModel.PlaceOfBirth.Street1;
                     existingPlaceOfBirth.Street2 = viewModel.PlaceOfBirth.Street2;
                     existingPlaceOfBirth.City = viewModel.PlaceOfBirth.City;
@@ -87,9 +88,19 @@ namespace TownRegistryASP.Controllers
 
                     _context.SaveChanges();
                 }
+                else
+                {
+                    if (viewModel.PlaceOfBirth.City != null)
+                    {
+                        _context.Places.Add(viewModel.PlaceOfBirth);
+                        _context.SaveChanges();
+                        viewModel.Citizen.PlaceOfBirthID = viewModel.PlaceOfBirth.PlaceID;
+                    }
+                }
                 if (existingCitizen.PlaceOfDeathID != 0)
                 {
                     var existingPlaceOfDeath = _context.Places.Single(p => p.PlaceID == existingCitizen.PlaceOfDeathID);
+                    viewModel.PlaceOfDeath.PlaceID = existingPlaceOfDeath.PlaceID;
                     existingPlaceOfDeath.Street1 = viewModel.PlaceOfDeath.Street1;
                     existingPlaceOfDeath.Street2 = viewModel.PlaceOfDeath.Street2;
                     existingPlaceOfDeath.City = viewModel.PlaceOfDeath.City;
@@ -97,6 +108,15 @@ namespace TownRegistryASP.Controllers
                     existingPlaceOfDeath.Zipcode = viewModel.PlaceOfDeath.Zipcode;
 
                     _context.SaveChanges();
+                }
+                else
+                {
+                    if (viewModel.PlaceOfDeath.City != null)
+                    {
+                        _context.Places.Add(viewModel.PlaceOfDeath);
+                        _context.SaveChanges();
+                        viewModel.Citizen.PlaceOfDeathID = viewModel.PlaceOfDeath.PlaceID;
+                    }
                 }
 
                 existingCitizen.FirstName = viewModel.Citizen.FirstName;
@@ -130,7 +150,7 @@ namespace TownRegistryASP.Controllers
                 Citizen = citizen,
                 GenderList = GenderListItems(),
                 StateList = StateListItems(),
-                StatusList = StateListItems(),
+                StatusList = StatusListItems(),
                 PlaceOfBirth = _context.Places.SingleOrDefault(p => p.PlaceID == citizen.PlaceOfBirthID),
                 PlaceOfDeath = _context.Places.SingleOrDefault(p => p.PlaceID == citizen.PlaceOfDeathID)
             };
