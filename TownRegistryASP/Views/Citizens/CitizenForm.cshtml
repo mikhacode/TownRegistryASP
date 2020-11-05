@@ -1,0 +1,167 @@
+﻿@model TownRegistryASP.ViewModels.CitizenFormViewModel
+@{
+    ViewBag.Title = "Citizen";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Citizen</h2>
+@using (Html.BeginForm("Save", "Citizens"))
+ {
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(m => m.Citizen.FirstName, "First Name*")
+            @Html.TextBoxFor(m => m.Citizen.FirstName, new { @class = "form-control" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(m => m.Citizen.MiddleName, "Middle Name")
+            @Html.TextBoxFor(m => m.Citizen.MiddleName, new { @class = "form-control" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(m => m.Citizen.LastName, "Last Name*")
+            @Html.TextBoxFor(m => m.Citizen.LastName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(m => m.Citizen.Gender, "Gender")
+            @Html.DropDownListFor(m => m.Citizen.Gender, new SelectList(Model.GenderList, "Value", "Text"), "", new { @class = "form-control" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(m => m.Citizen.Occupation, "Occupation")
+            @Html.TextBoxFor(m => m.Citizen.Occupation, new { @class = "form-control" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(m => m.Citizen.Status, "Status")
+            @Html.DropDownListFor(m => m.Citizen.Status, new SelectList(Model.StatusList, "Value", "Text"), "", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(m => m.Citizen.DateOfBirth, "Date Of Birth")
+            @Html.TextBoxFor(m => m.Citizen.DateOfBirth, "{0:MM/dd/yyyy}", new { @class = "form-control datepicker", placeholder = "MM/DD/YYYY" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(m => m.Citizen.DateOfDeath, "Date Of Death")
+            @Html.TextBoxFor(m => m.Citizen.DateOfDeath, "{0:MMM/dd/yyyy}", new { @class = "form-control datepicker", placeholder = "MM/DD/YYYY" })
+        </div>
+    </div>
+    <div class="row" style="padding-bottom: 15px;">
+        <div class="col-md-4">
+            <div class="checkbox-inline">
+                <input type="checkbox" id="POBCheck" /> Place of Birth Known?
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="checkbox-inline">
+                <input type="checkbox" id="PODCheck" /> Place of Death Known?
+            </div>
+        </div>
+    </div>
+    <div class="placeOfBirthForm" style="padding-bottom: 15px;">
+        <h3>Place of Birth</h3>
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.PlaceOfBirth.Street1, "Street Address 1")
+                @Html.TextBoxFor(m => m.PlaceOfBirth.Street1, new { @class = "form-control", style = "width: 100%;" })
+            </div>
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.PlaceOfBirth.Street2, "Street Address 2")
+                @Html.TextBoxFor(m => m.PlaceOfBirth.Street2, new { @class = "form-control", style = "width: 100%;" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                @Html.LabelFor(m => m.PlaceOfBirth.City, "City*")
+                @Html.TextBoxFor(m => m.PlaceOfBirth.City, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(m => m.PlaceOfBirth.State, "State")
+                @Html.DropDownListFor(m => m.PlaceOfBirth.State, new SelectList(Model.StateList, "Value", "Text"), "", new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(m => m.PlaceOfBirth.Zipcode, "Zipcode")
+                @Html.TextBoxFor(m => m.PlaceOfBirth.Zipcode, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="placeOfDeathForm" style="padding-bottom: 15px;">
+        <h3>Place Of Death</h3>
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.PlaceOfDeath.Street1, "Street Address 1")
+                @Html.TextBoxFor(m => m.PlaceOfDeath.Street1, new { @class = "form-control", style = "width: 100%;" })
+            </div>
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.PlaceOfDeath.Street2, "Street Address 2")
+                @Html.TextBoxFor(m => m.PlaceOfDeath.Street2, new { @class = "form-control", style = "width: 100%;" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                @Html.LabelFor(m => m.PlaceOfDeath.City, "City*")
+                @Html.TextBoxFor(m => m.PlaceOfDeath.City, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(m => m.PlaceOfDeath.State, "State")
+                @Html.DropDownListFor(m => m.PlaceOfDeath.State, new SelectList(Model.StateList, "Value", "Text"), "", new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(m => m.PlaceOfDeath.Zipcode, "Zipcode")
+                @Html.TextBoxFor(m => m.PlaceOfDeath.Zipcode, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <button type="submit" class="btn btn-primary" style="width: 100%">Save</button>
+    </div>
+</div>
+    
+    <script>
+        $(document).ready(function () {
+            //$('#datepicker').datepicker();
+            if ($('#PlaceOfBirth_City').val() !== '') {
+                $('.placeOfBirthForm').show();
+                $('#POBCheck').prop('checked', true);
+            } else {
+                $('.placeOfBirthForm').hide();
+            }
+            if ($('#PlaceOfDeath_City').val() !== '') {
+                $('.placeOfDeathForm').show();
+                $('#PODCheck').prop('checked', true);
+            } else {
+                $('.placeOfDeathForm').hide();
+            }
+
+            $('#POBCheck').change(function () {
+                // use the :checked selector to find any that are checked
+                if ($('#POBCheck').prop('checked')) {
+                    $('.placeOfBirthForm').slideDown('slow');
+                } else {
+                    $('.placeOfBirthForm').slideUp('slow');
+                    $('#PlaceOfBirth_Street1').val('');
+                    $('#PlaceOfBirth_Street2').val('');
+                    $('#PlaceOfBirth_City').val('');
+                    $('#PlaceOfBirth_State').val('');
+                    $('#PlaceOfBirth_Zipcode').val('');
+                }
+            });
+
+            $('#PODCheck').change(function () {
+                // use the :checked selector to find any that are checked
+                if ($('#PODCheck').prop('checked')) {
+                    $('.placeOfDeathForm').slideDown('slow');
+                } else {
+                    $('.placeOfDeathForm').slideUp('slow');
+                    $('#PlaceOfDeath_Street1').val('');
+                    $('#PlaceOfDeath_Street2').val('');
+                    $('#PlaceOfDeath_City').val('');
+                    $('#PlaceOfDeath_State').val('');
+                    $('#PlaceOfDeath_Zipcode').val('');
+                }
+            });
+
+        });
+    </script>
+ }
+

@@ -11,6 +11,7 @@
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
             <th scope="col">Status</th>
+            <th scope="col">Options</th>
         </tr>
     </thead>
     <tbody>
@@ -21,6 +22,12 @@
                     <td>@citizen.FirstName</td>
                     <td>@citizen.LastName</td>
                     <td>@citizen.Status</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Citizens", new { id = citizen.CitizenID }, new { @class="btn bg-warning"})
+                        @*<button type="button" class="btn bg-info">View</button>
+                        <button type="button" class="btn bg-warning">Edit</button>
+                        <button type="button" class="btn bg-danger">Delete</button>*@
+                    </td>
                 </tr>
             }
         }
