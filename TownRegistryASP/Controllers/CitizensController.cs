@@ -158,6 +158,32 @@ namespace TownRegistryASP.Controllers
             return View("CitizenForm", viewModel);
         }
 
+        public ActionResult Delete(int id)
+        {
+            var citizenToDelete = _context.Citizens.Single(c => c.CitizenID == id);
+            
+            if (citizenToDelete.PlaceOfBirthID != 0)
+            {
+                var pobToDelete = _context.Places.Single(p => p.PlaceID == citizenToDelete.PlaceOfBirthID);
+                _context.Places.Remove(pobToDelete);
+
+                _context.SaveChanges();
+            }
+
+            if (citizenToDelete.PlaceOfDeathID != 0)
+            {
+                var podToDelete = _context.Places.Single(p => p.PlaceID == citizenToDelete.PlaceOfDeathID);
+                _context.Places.Remove(podToDelete);
+
+                _context.SaveChanges();
+            }
+
+            _context.Citizens.Remove(citizenToDelete);
+
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Citizens");
+        }
+
         public static IEnumerable<SelectListItem> StatusListItems()
         {
             var items = new List<SelectListItem>
